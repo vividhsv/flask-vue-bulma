@@ -48,7 +48,7 @@ class AuthView(FlaskView):
             resp = {'error': 'User does not exist'}
             return jsonify(resp), 404
         else:
-            reset_url = "{}/auth/reset?token={}".format(current_app.config['SERVER_URL'], user.generate_reset_token())
+            reset_url = "{}/#/auth/reset?token={}".format(current_app.config['SERVER_URL'], user.generate_reset_token())
 
             def task():
                 mail.send(Message(

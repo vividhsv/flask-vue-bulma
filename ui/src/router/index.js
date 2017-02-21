@@ -11,7 +11,6 @@ import ResetPassword from "../components/auth/ResetPassword.vue";
 Vue.use(VueRouter)
 
 var router = new VueRouter({
-  mode: 'history',
   routes: [
     {
       path: "/auth",
