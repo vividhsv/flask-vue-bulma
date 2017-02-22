@@ -96,14 +96,21 @@
     },
     methods: {
       register(){
+        delete this.user.repeatPassword
         this.$http.post("/auth/registration", this.user)
           .then((response) => {
             this.$router.push("/auth/login")
-            alertify.success("Registration Successful. You can now login.")
+            this.$notify.success({content: "Registration Successful. You can now login."})
           })
           .catch((error) => {
-            for (let [key, value] of Object.entries(error.response.data)) {
-              alertify.error(key + ': ' + value)
+          console.log(error)
+            if (error.response.status == 400) {
+              for (let [key, value] of Object.entries(error.response.data)) {
+                this.$notify.error(key + ': ' + value)
+              }
+            }
+            if (error.response.status == 409) {
+              this.$notify.error({content: error.response.data.error})
             }
           })
       },

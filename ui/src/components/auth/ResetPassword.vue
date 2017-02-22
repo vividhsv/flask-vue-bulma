@@ -66,10 +66,10 @@
         this.$http.post('/auth/reset/' + this.$route.query.token, this.user)
           .then((response) => {
             this.$router.push('/')
-            alertify.success(response.data.message)
+            this.$notify.success({content: response.data.message})
           })
           .catch((error) => {
-            alertify.error(error.response.data.error)
+            this.$notify.error({content: error.response.data.error})
           })
       }
     }

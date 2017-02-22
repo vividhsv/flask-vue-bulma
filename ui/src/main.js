@@ -5,13 +5,13 @@ import App from "./App";
 import Router from "./router";
 import Http from "./plugins/Http.js";
 import Auth from "./plugins/Auth.js";
+import Notify from "./plugins/Notify.js";
 import Vuelidate from "vuelidate";
 
 Vue.use(Http)
 Vue.use(Auth)
+Vue.use(Notify)
 Vue.use(Vuelidate)
-
-alertify.defaults.notifier.position = 'top-right';
 
 //configure route guards
 Router.beforeEach(function (to, from, next) {

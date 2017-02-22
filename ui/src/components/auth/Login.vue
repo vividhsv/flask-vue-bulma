@@ -64,7 +64,9 @@
             this.$router.push("/dashboard")
           })
           .catch((error) => {
-            alertify.error(error.response.data.error)
+                this.$notify.error({
+                  content: error.response.data.error,
+                })
           })
       }
     }

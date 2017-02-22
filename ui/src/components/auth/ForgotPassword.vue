@@ -49,11 +49,11 @@
       reset(){
         this.$http.post("/auth/reset", this.user)
           .then((response) => {
-            alertify.success(response.data.message)
+            this.$notify.success({ content:response.data.message })
             this.$router.push("/")
           })
           .catch((error) => {
-            alertify.error(error.response.data.error)
+            this.$notify.success({ content:error.response.data.error })
           })
       }
     }
