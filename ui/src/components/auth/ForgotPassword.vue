@@ -4,18 +4,20 @@
             Reset Password
         </h1>
         <div class="box">
-            <label class="label">Email</label>
-            <p class="control">
-                <input class="input" :class="{'is-danger': $v.user.email.$error}" type="text"
-                       placeholder="jsmith@example.org" v-model="user.email" @blur="$v.user.email.$touch()">
-                <span class="help is-danger fadeInDown"
-                      v-if="(!$v.user.email.required || !$v.user.email.email) && $v.user.email.$dirty">Valid email address is required</span>
-            </p>
-            <hr>
-            <p class="control">
-                <button class="button is-primary" @click="reset" :disabled="$v.$invalid">Request Reset</button>
-                <router-link to="/auth/login" tag="button" class="button">Cancel</router-link>
-            </p>
+            <form @submit.prevent="reset">
+                <label class="label">Email</label>
+                <p class="control">
+                    <input class="input" :class="{'is-danger': $v.user.email.$error}" type="text"
+                           placeholder="jsmith@example.org" v-model="user.email" @blur="$v.user.email.$touch()">
+                    <span class="help is-danger fadeInDown"
+                          v-if="(!$v.user.email.required || !$v.user.email.email) && $v.user.email.$dirty">Valid email address is required</span>
+                </p>
+                <hr>
+                <p class="control">
+                    <button type="submit" class="button is-primary" :disabled="$v.$invalid">Request Reset</button>
+                    <router-link to="/auth/login" tag="button" class="button">Cancel</router-link>
+                </p>
+            </form>
         </div>
         <p class="has-text-centered">
             <router-link to="/auth/register">Register an Account</router-link>
@@ -49,11 +51,11 @@
       reset(){
         this.$http.post("/auth/reset", this.user)
           .then((response) => {
-            this.$notify.success({ content:response.data.message })
+            this.$notify.success({content: response.data.message})
             this.$router.push("/")
           })
           .catch((error) => {
-            this.$notify.success({ content:error.response.data.error })
+            this.$notify.success({content: error.response.data.error})
           })
       }
     }

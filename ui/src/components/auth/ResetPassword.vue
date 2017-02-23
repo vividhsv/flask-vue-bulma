@@ -4,26 +4,27 @@
             Reset Password
         </h1>
         <div class="box">
-            <label class="label">Password</label>
-            <p class="control">
-                <input class="input" :class="{'is-danger': $v.user.password.$error}" type="password"
-                       placeholder="●●●●●●●" v-model="user.password" @blur="$v.user.password.$touch()">
-                <password-strength :input="user.password"></password-strength>
-                <span class="help is-danger animated fadeInDown"
-                      v-if="!$v.user.password.required && $v.user.password.$dirty">Password is required</span>
-            </p>
-            <label class="label">Confirm Password</label>
-            <p class="control">
-                <input class="input" :class="{'is-danger': $v.user.repeatPassword.$error}" type="password"
-                       placeholder="●●●●●●●" v-model="user.repeatPassword" @blur="$v.user.repeatPassword.$touch()">
-                <span class="help is-danger animated fadeInDown"
-                      v-if="!$v.user.repeatPassword.sameAsPassword && $v.user.repeatPassword.$dirty">Passwords must be identical.</span>
-            </p>
-            <hr>
-            <p class="control">
-                <button @click="reset_password" class="button is-primary" :disabled="$v.$invalid">Reset</button>
-                <router-link to="/" tag="button" class="button is-default">Cancel</router-link>
-            </p>
+            <form @submit.prevent="reset_password">
+                <label class="label">Password</label>
+                <p class="control">
+                    <input class="input" :class="{'is-danger': $v.user.password.$error}" type="password"
+                           placeholder="●●●●●●●" v-model="user.password" @blur="$v.user.password.$touch()">
+                    <password-strength :input="user.password"></password-strength>
+                    <span class="help is-danger animated fadeInDown"
+                          v-if="!$v.user.password.required && $v.user.password.$dirty">Password is required</span>
+                </p>
+                <label class="label">Confirm Password</label>
+                <p class="control">
+                    <input class="input" :class="{'is-danger': $v.user.repeatPassword.$error}" type="password"
+                           placeholder="●●●●●●●" v-model="user.repeatPassword" @blur="$v.user.repeatPassword.$touch()">
+                    <span class="help is-danger animated fadeInDown"
+                          v-if="!$v.user.repeatPassword.sameAsPassword && $v.user.repeatPassword.$dirty">Passwords must be identical.</span>
+                </p>
+                <hr>
+                <p class="control">
+                    <button type="submit" class="button is-primary" :disabled="$v.$invalid">Reset</button>
+                    <router-link to="/" tag="button" class="button is-default">Cancel</router-link>
+                </p>
         </div>
         <p class="has-text-centered">
             <router-link to="/auth/register">Register an Account</router-link>
@@ -32,6 +33,7 @@
             |
             <a href="#">Need help?</a>
         </p>
+        </form>
     </div>
 </template>
 <script>
