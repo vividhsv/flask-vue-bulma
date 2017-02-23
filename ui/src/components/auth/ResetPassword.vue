@@ -25,6 +25,7 @@
                     <button type="submit" class="button is-primary" :disabled="$v.$invalid">Reset</button>
                     <router-link to="/" tag="button" class="button is-default">Cancel</router-link>
                 </p>
+            </form>
         </div>
         <p class="has-text-centered">
             <router-link to="/auth/register">Register an Account</router-link>
