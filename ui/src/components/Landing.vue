@@ -9,11 +9,6 @@
                                 <img src="../assets/bulma.png" alt="Description">
                             </router-link>
                         </div>
-                        <span class="nav-toggle">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
                         <div class="nav-right nav-menu">
                             <a class="nav-item is-tab is-active">
                                 Home
@@ -28,18 +23,23 @@
                                 Help
                             </a>
                             <span class="nav-item" v-if="!isloggedIn">
-                <router-link to="/auth/login" tag="button" class="button">
-                  Log in
-                </router-link>
-                <router-link to="/auth/register" tag="button" class="button is-info">
-                  Sign up
-                </router-link>
-              </span>
+                                <router-link to="/auth/login" tag="button" class="button">
+                                  Log in
+                                </router-link>
+                                <router-link to="/auth/register" tag="button" class="button is-info">
+                                  Sign up
+                                </router-link>
+                            </span>
                             <span class="nav-item" v-if="isloggedIn">
-                <button @click="logout" class="button is-info">
-                  Logout
-                </button>
-              </span>
+                                <Dropdown name="Vividh Viswanatha">
+                                      <ul slot="content" class="menu-list">
+                                        <li><a>Profile</a></li>
+                                        <li><a>Settings</a></li>
+                                          <hr>
+                                        <li><a @click="logout">Logout</a></li>
+                                      </ul>
+                                </Dropdown>
+                          </span>
                         </div>
                     </div>
                 </nav>
@@ -85,8 +85,10 @@
 </template>
 
 <script>
+    import Dropdown from './Dropdown.vue'
   export default{
     name: 'root',
+    components: {Dropdown},
     data(){
       return {
         isloggedIn: this.$auth.loggedIn(),
