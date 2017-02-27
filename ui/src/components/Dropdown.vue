@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <button class="button is-info drop-marker" @click="toggle">
+        <button class="button is-info drop-marker" @click="toggle" v-on-clickaway="away">
             <span class="drop-marker">{{ name }}</span>
             <span class="icon drop-marker">
                 <i class="fa fa-angle-down drop-marker"></i>
@@ -12,8 +12,11 @@
     </div>
 </template>
 <script>
+  import {mixin as clickaway} from 'vue-clickaway';
+
   export default {
     name: 'drop-down',
+    mixins: [clickaway],
     props: {
       name: {
         type: String,
@@ -26,21 +29,13 @@
       }
     },
     methods: {
+      away(){
+        if (this.isShown) {
+          this.isShown = false
+        }
+      },
       toggle(){
         this.isShown = !this.isShown;
-        if (this.isShown) {
-          window.addEventListener('click', (e) => {
-            if (!e.target.matches('.drop-marker') && this.isShown) {
-              this.isShown = false
-            }
-          })
-        } else {
-          window.removeEventListener('click', (e) => {
-            if (!e.target.matches('.drop-marker') && this.isShown) {
-              this.isShown = false
-            }
-          })
-        }
       },
     },
   }
@@ -53,7 +48,6 @@
         vertical-align: middle;
         width: max-content;
     }
-
     .dropdown-content {
         position: absolute;
         border-radius: 3px;
@@ -64,14 +58,10 @@
         background-color: #ffffff;
         width: 100%;
         min-width: max-content;
-        /*box-shadow: 0 6px 12px rgba(0,0,0,.175);*/
-
     }
-
     .showdrop {
         display: block;
     }
-
     .dropdown-content hr {
         margin-top: 0px;
         margin-bottom: 0px;
