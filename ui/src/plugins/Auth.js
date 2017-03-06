@@ -1,37 +1,38 @@
 var AuthPlugin = {
-  setToken: function (token) {
-    localStorage.setItem('authToken', token);
+  setToken (token) {
+    localStorage.setItem('authToken', token)
   },
 
-  destoryToken: function () {
-    localStorage.removeItem('authToken');
+  destoryToken () {
+    localStorage.removeItem('authToken')
   },
 
-  getToken: function () {
-    var token = localStorage.getItem('authToken');
+  getToken () {
+    var token = localStorage.getItem('authToken')
 
     if (!token) {
-      return null;
+      return null
     } else {
-      return token;
+      return token
     }
   },
 
-  loggedIn: function () {
-    if (this.getToken())
-      return true;
-    else
-      return false;
+  loggedIn () {
+    if (this.getToken()) {
+      return true
+    } else {
+      return false
+    }
   }
-};
+}
 
 export default function (Vue) {
-  Vue.auth = AuthPlugin;
+  Vue.auth = AuthPlugin
 
   Object.defineProperties(Vue.prototype, {
     $auth: {
-      get: function () {
-        return Vue.auth;
+      get () {
+        return Vue.auth
       }
     }
   })

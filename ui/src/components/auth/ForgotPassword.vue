@@ -35,7 +35,7 @@
     data: function () {
       return {
         user: {
-          email: ""
+          email: ''
         }
       }
     },
@@ -44,15 +44,15 @@
         email: {
           required,
           email
-        },
+        }
       }
     },
     methods: {
-      reset(){
-        this.$http.post("/auth/reset", this.user)
+      reset () {
+        this.$http.post('/auth/reset', this.user)
           .then((response) => {
             this.$notify.success({content: response.data.message})
-            this.$router.push("/")
+            this.$router.push('/')
           })
           .catch((error) => {
             this.$notify.success({content: error.response.data.error})

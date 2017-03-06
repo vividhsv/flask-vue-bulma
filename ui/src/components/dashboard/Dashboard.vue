@@ -50,7 +50,7 @@
   export default {
     name: 'dashboard',
     methods: {
-      logout(){
+      logout () {
         this.$auth.destoryToken()
         this.$router.push('/')
       }

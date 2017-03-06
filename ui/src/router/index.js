@@ -1,54 +1,54 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Landing from "../components/Landing.vue";
-import Auth from "../components/auth/Auth.vue";
-import Login from "../components/auth/Login.vue";
-import Register from "../components/auth/Register.vue";
-import Dashboard from "../components/dashboard/Dashboard.vue";
-import ForgotPassword from "../components/auth/ForgotPassword.vue";
-import ResetPassword from "../components/auth/ResetPassword.vue";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Landing from '../components/Landing.vue'
+import Auth from '../components/auth/Auth.vue'
+import Login from '../components/auth/Login.vue'
+import Register from '../components/auth/Register.vue'
+import Dashboard from '../components/dashboard/Dashboard.vue'
+import ForgotPassword from '../components/auth/ForgotPassword.vue'
+import ResetPassword from '../components/auth/ResetPassword.vue'
 
 Vue.use(VueRouter)
 
 var router = new VueRouter({
   routes: [
     {
-      path: "/auth",
+      path: '/auth',
       component: Auth,
-      redirect: "/auth/login",
+      redirect: '/auth/login',
       children: [
         {
-          path: "login",
+          path: 'login',
           component: Login,
           meta: {requiresGuest: true}
         },
         {
-          path: "register",
+          path: 'register',
           component: Register,
           meta: {requiresGuest: true}
         },
         {
-          path: "forgotpassword",
+          path: 'forgotpassword',
           component: ForgotPassword,
           meta: {requiresGuest: true}
         },
         {
-          path: "reset",
+          path: 'reset',
           component: ResetPassword,
           meta: {requiresGuest: true}
         }
       ]
     },
     {
-      path: "/",
+      path: '/',
       component: Landing
     },
     {
-      path: "/dashboard",
+      path: '/dashboard',
       component: Dashboard,
       meta: {requiresAuth: true}
     }
   ]
 })
 
-export default router;
+export default router

@@ -65,15 +65,15 @@
   export default {
     name: 'register',
     components: {PasswordStrength},
-    data(){
+    data () {
       return {
         user: {
-          first_name: "",
-          last_name: "",
-          email: "",
-          password: "",
-          repeatPassword: ""
-        },
+          first_name: '',
+          last_name: '',
+          email: '',
+          password: '',
+          repeatPassword: ''
+        }
       }
     },
     validations: {
@@ -86,7 +86,7 @@
         },
         email: {
           required,
-          email,
+          email
         },
         password: {
           required,
@@ -95,29 +95,29 @@
         repeatPassword: {
           sameAsPassword: sameAs('password')
         }
-      },
+      }
 
     },
     methods: {
-      register(){
+      register () {
         delete this.user.repeatPassword
-        this.$http.post("/auth/registration", this.user)
+        this.$http.post('/auth/registration', this.user)
           .then((response) => {
-            this.$router.push("/auth/login")
-            this.$notify.success({content: "Registration Successful. You can now login."})
+            this.$router.push('/auth/login')
+            this.$notify.success({content: 'Registration Successful. You can now login.'})
           })
           .catch((error) => {
             console.log(error)
-            if (error.response.status == 400) {
+            if (error.response.status === 400) {
               for (let [key, value] of Object.entries(error.response.data)) {
                 this.$notify.error(key + ': ' + value)
               }
             }
-            if (error.response.status == 409) {
+            if (error.response.status === 409) {
               this.$notify.error({content: error.response.data.error})
             }
           })
-      },
+      }
     }
   }
 </script>

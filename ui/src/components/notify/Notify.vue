@@ -10,60 +10,59 @@
     props: {
       duration: {
         type: Number,
-        default: 4500,
+        default: 4500
       },
       type: {
         type: String,
-        default: 'default',
+        default: 'default'
       },
       title: {
-        type: String,
+        type: String
       },
       content: {
         type: String,
-        default: '',
-      },
+        default: ''
+      }
     },
-    data(){
+    data () {
       return {
         isShow: false
       }
     },
     computed: {
-      typeClass(){
+      typeClass () {
         return this.type ? `is-${this.type}` : null
       }
     },
     methods: {
-      handleClose() {
-        this.isShow = false;
+      handleClose () {
+        this.isShow = false
         setTimeout(() => {
-          this.$destroy();
-          this.$el.remove();
-        }, 100);
+          this.$destroy()
+          this.$el.remove()
+        }, 100)
       },
-      close() {
-        clearTimeout(this.timer);
-        this.isShow = false;
-        this.$destroy();
-        this.$el.remove();
-      },
-    },
-    beforeMount() {
-      let parent;
-      parent = document.querySelector('.notifications');
-      if (!parent) {
-        parent = document.createElement('div');
-        parent.classList.add('notifications');
-        document.body.appendChild(parent);
+      close () {
+        clearTimeout(this.timer)
+        this.isShow = false
+        this.$destroy()
+        this.$el.remove()
       }
-      parent.appendChild(this.$el);
     },
-    mounted() {
+    beforeMount () {
+      let parent
+      parent = document.querySelector('.notifications')
+      if (!parent) {
+        parent = document.createElement('div')
+        parent.classList.add('notifications')
+        document.body.appendChild(parent)
+      }
+      parent.appendChild(this.$el)
+    },
+    mounted () {
       this.isShow = true
-      this.timer = setTimeout(() => this.close(), this.duration);
-    },
-
+      this.timer = setTimeout(() => this.close(), this.duration)
+    }
   }
 
 </script>

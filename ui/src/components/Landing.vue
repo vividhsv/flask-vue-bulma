@@ -85,19 +85,19 @@
 </template>
 
 <script>
-    import Dropdown from './Dropdown.vue'
+  import Dropdown from './Dropdown.vue'
   export default{
     name: 'root',
     components: {Dropdown},
-    data(){
+    data () {
       return {
         current_user: this.$store.state.current_user,
-        isloggedIn: this.$auth.loggedIn(),
+        isloggedIn: this.$auth.loggedIn()
       }
     },
     methods: {
-      logout(){
-        this.$auth.destoryToken();
+      logout () {
+        this.$auth.destoryToken()
         this.isloggedIn = false
       }
     }
@@ -106,3 +106,4 @@
 
 <style>
 </style>
+

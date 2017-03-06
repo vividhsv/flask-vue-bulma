@@ -64,7 +64,7 @@
       }
     },
     methods: {
-      reset_password(){
+      reset_password () {
         delete this.user.repeatPassword
         this.$http.post('/auth/reset/' + this.$route.query.token, this.user)
           .then((response) => {

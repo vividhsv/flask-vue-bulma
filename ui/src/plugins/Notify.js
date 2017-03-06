@@ -1,8 +1,7 @@
-import Notify from "../components/notify";
-
+import Notify from '../components/notify'
 
 const NotifyPlugin = {
-  install(Vue) {
+  install (Vue) {
     Vue.prototype.$notify = Notify
   }
 }

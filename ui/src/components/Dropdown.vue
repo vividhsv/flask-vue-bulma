@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-  import {mixin as clickaway} from 'vue-clickaway';
+  import {mixin as clickaway} from 'vue-clickaway'
 
   export default {
     name: 'drop-down',
@@ -21,23 +21,23 @@
       name: {
         type: String,
         required: true
-      },
+      }
     },
-    data(){
+    data () {
       return {
         isShown: false
       }
     },
     methods: {
-      away(){
+      away () {
         if (this.isShown) {
           this.isShown = false
         }
       },
-      toggle(){
-        this.isShown = !this.isShown;
-      },
-    },
+      toggle () {
+        this.isShown = !this.isShown
+      }
+    }
   }
 </script>
 <style>

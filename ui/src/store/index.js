@@ -1,5 +1,5 @@
-import Vuex from "vuex";
-import Vue from "vue";
+import Vuex from 'vuex'
+import Vue from 'vue'
 
 Vue.use(Vuex)
 
@@ -9,14 +9,14 @@ const store = new Vuex.Store({
   },
 
   mutations: {
-    set_me(state, user){
+    set_me (state, user) {
       state.current_user = user
     }
   },
 
   actions: {
     set_me ({commit}) {
-      Vue.http.get("/users/me")
+      Vue.http.get('/users/me')
         .then((response) => {
           commit('set_me', response.data)
         })
@@ -25,4 +25,4 @@ const store = new Vuex.Store({
 
 })
 
-export default store;
+export default store
