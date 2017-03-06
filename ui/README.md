@@ -1,6 +1,6 @@
 # flask-vue-bulma
 
-> A Vue.js project
+> A Flask Vue Project
 
 ## Build Setup
 
