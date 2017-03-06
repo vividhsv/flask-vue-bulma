@@ -9,3 +9,4 @@ ui/test/e2e/reports
 selenium-debug.log
 migrations/
 .idea/
+*.pyc

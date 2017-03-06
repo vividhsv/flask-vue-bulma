@@ -31,7 +31,7 @@
                                 </router-link>
                             </span>
                             <span class="nav-item" v-if="isloggedIn">
-                                <Dropdown name="Vividh Viswanatha">
+                                <Dropdown :name="current_user.first_name">
                                       <ul slot="content" class="menu-list">
                                         <li><a>Profile</a></li>
                                         <li><a>Settings</a></li>
@@ -91,6 +91,7 @@
     components: {Dropdown},
     data(){
       return {
+        current_user: this.$store.state.current_user,
         isloggedIn: this.$auth.loggedIn(),
       }
     },

@@ -8,7 +8,7 @@
                 <label class="label">Email</label>
                 <p class="control">
                     <input class="input" :class="{'is-danger': $v.user.email.$error}" type="text"
-                           placeholder="jsmith@example.org" v-model="user.email" @blur="$v.user.email.$touch()">
+                           placeholder="jsmith@example.org" name="email" v-model="user.email" @blur="$v.user.email.$touch()">
                     <span class="help is-danger fadeInDown"
                           v-if="(!$v.user.email.required || !$v.user.email.email) && $v.user.email.$dirty">Valid email address is required</span>
                 </p>
@@ -63,6 +63,8 @@
         this.$http.post('/auth/login', this.user)
           .then((response) => {
             this.$auth.setToken(response.data.auth_token)
+            this.$http.defaults.headers.common['Authorization']=`Bearer ${response.data.auth_token}`
+            this.$store.dispatch('set_me')
             this.$router.push("/")
           })
           .catch((error) => {
@@ -70,9 +72,9 @@
               content: error.response.data.error,
             })
           })
+
       }
     }
-
   }
 </script>
 <style>

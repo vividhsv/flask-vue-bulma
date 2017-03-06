@@ -18,6 +18,7 @@
     "vue-clickaway": "^2.1.0",
     "vue-router": "^2.2.0",
     "vuelidate": "^0.2.0",
+    "vuex": "^2.2.1",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {

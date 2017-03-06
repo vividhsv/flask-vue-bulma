@@ -7,6 +7,8 @@ import Http from "./plugins/Http.js";
 import Auth from "./plugins/Auth.js";
 import Notify from "./plugins/Notify.js";
 import Vuelidate from "vuelidate";
+import Store from "./store";
+
 
 Vue.use(Http)
 Vue.use(Auth)
@@ -39,6 +41,7 @@ Router.beforeEach(function (to, from, next) {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store: Store,
   router: Router,
   template: '<App/>',
   components: {App}
