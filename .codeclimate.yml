@@ -1,0 +1,31 @@
+---
+engines:
+  csslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - css
+      - html
+      - javascript
+      - python
+  eslint:
+    enabled: true
+    channel: "eslint-2"
+  fixme:
+    enabled: true
+  radon:
+    enabled: true
+ratings:
+  paths:
+  - "**.html"
+  - "**.css"
+  - "**.js"
+  - "**.vue"
+  - "**.py"
+exclude_paths:
+- api/static/
+- ui/build/
+- ui/node_modules/
+- ui/test/
