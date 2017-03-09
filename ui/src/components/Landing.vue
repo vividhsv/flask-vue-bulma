@@ -31,7 +31,7 @@
                                 </router-link>
                             </span>
                             <span class="nav-item" v-if="isloggedIn">
-                                <Dropdown :name="current_user.first_name">
+                                <Dropdown :name="getFullName">
                                       <ul slot="content" class="menu-list">
                                         <li><a>Profile</a></li>
                                         <li><a>Settings</a></li>
@@ -86,15 +86,16 @@
 
 <script>
   import Dropdown from './Dropdown.vue'
+  import { mapGetters } from 'vuex'
   export default{
     name: 'root',
     components: {Dropdown},
     data () {
       return {
-        current_user: this.$store.state.current_user,
         isloggedIn: this.$auth.loggedIn()
       }
     },
+    computed: mapGetters(['getFullName']),
     methods: {
       logout () {
         this.$auth.destoryToken()
