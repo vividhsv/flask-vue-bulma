@@ -63,8 +63,6 @@
         this.$http.post('/auth/login', this.user)
           .then((response) => {
             this.$auth.setToken(response.data.auth_token)
-            this.$http.defaults.headers.common['Authorization'] = `Bearer ${response.data.auth_token}`
-            this.$store.dispatch('set_me')
             this.$router.push('/')
           })
           .catch((error) => {

@@ -96,7 +96,6 @@
           sameAsPassword: sameAs('password')
         }
       }
-
     },
     methods: {
       register () {

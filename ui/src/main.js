@@ -8,11 +8,13 @@ import Auth from './plugins/Auth.js'
 import Notify from './plugins/Notify.js'
 import Vuelidate from 'vuelidate'
 import Store from './store'
+import Moment from 'vue-moment'
 
 Vue.use(Http)
 Vue.use(Auth)
 Vue.use(Notify)
 Vue.use(Vuelidate)
+Vue.use(Moment)
 
 // configure route guards
 Router.beforeEach(function (to, from, next) {
