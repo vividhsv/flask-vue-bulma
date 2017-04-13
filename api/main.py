@@ -2,6 +2,7 @@ from flask import Flask
 
 from api.config import ProdConfig
 from api.endpoints.auth import AuthView
+from api.endpoints.me import MeView
 from api.error_handlers import err_handlers
 from api.root import RootView
 from endpoints.users import UsersView
@@ -34,3 +35,4 @@ def register_views(app):
     RootView.register(app, trailing_slash=slash)
     UsersView.register(app, route_prefix=v1_prefix, trailing_slash=slash)
     AuthView.register(app, route_prefix=v1_prefix, trailing_slash=slash)
+    MeView.register(app, route_prefix=v1_prefix, trailing_slash=slash, route_base='/users/me')

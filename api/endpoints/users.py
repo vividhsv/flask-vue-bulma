@@ -27,13 +27,6 @@ class UsersView(FlaskView):
         user = User.query.get_or_404(pk)
         return self.users_schema.jsonify(user), 200
 
-    @route('/me', methods=['GET'])
-    @jwt_required
-    def me(self):
-        user_id = get_jwt_identity()
-        user = User.query.get_or_404(user_id)
-        return self.users_schema.jsonify(user), 200
-
     @jwt_required
     def post(self):
         user = UserSchema().load(request.get_json(), session=db.session).data
@@ -54,7 +47,9 @@ class UsersView(FlaskView):
         if check_user and check_user.id != user.id:
             return jsonify({'error': 'User email already exists'}), 409
 
-        user = UserSchema(only=('email', 'first_name', 'last_name')).load(request.get_json(), instance=user, partial=('email', 'first_name', 'last_name'), session=db.session).data
+        user = UserSchema(only=('email', 'first_name', 'last_name', 'password')).load(request.get_json(), instance=user,partial=('email', 'first_name', 'last_name', 'password'), session=db.session).data
+        if(user.password):
+            user.password = bcrypt.generate_password_hash(user.password)
         db.session.commit()
         return UserSchema().jsonify(user), 200
 

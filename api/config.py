@@ -1,5 +1,7 @@
 import os
 
+import datetime
+
 
 class Config():
 
@@ -10,6 +12,7 @@ class Config():
     TRAILING_SLASH = False
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(hours=24)
 
 
 class ProdConfig(Config):

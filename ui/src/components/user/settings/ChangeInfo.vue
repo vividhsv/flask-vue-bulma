@@ -1,6 +1,6 @@
 <template>
     <div class="column is-one-thrid">
-        <form>
+        <form @submit.prevent="save">
             <label class="label">First Name</label>
             <p class="control">
                 <input class="input" :class="{'is-danger': $v.user.first_name.$error}" type="text"
@@ -19,7 +19,7 @@
             </p>
             <hr>
             <p class="control">
-                <button class="button is-primary" @click="save">Save</button>
+                <button class="button is-primary" type="submit" :disabled="$v.$invalid">Save</button>
             </p>
         </form>
     </div>
@@ -49,7 +49,7 @@
     },
     methods: {
       save () {
-        this.$http.put(`/users/${this.$store.getters.getCurrentUser.id}`, this.user)
+        this.$http.put('/users/me', this.user)
           .then((response) => {
             this.$store.dispatch('update_user', response.data)
             this.$notify.success({content: 'User information updated successfully'})
