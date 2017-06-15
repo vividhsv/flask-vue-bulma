@@ -6,7 +6,7 @@ from api.endpoints.me import MeView
 from api.error_handlers import err_handlers
 from api.root import RootView
 from endpoints.users import UsersView
-from extentions import db, ma, migrate, bcrypt, jwt, cors, mail
+from extentions import db, ma, migrate, bcrypt, jwt, cors, mail, oauth
 
 
 def create_app(config_object=ProdConfig):
@@ -23,8 +23,9 @@ def register_extentions(app):
     bcrypt.init_app(app)
     jwt.init_app(app)
     cors.init_app(app)
-    migrate.init_app(app, db)
     mail.init_app(app)
+    oauth.init_app(app)
+    migrate.init_app(app, db)
 
 
 def register_views(app):
